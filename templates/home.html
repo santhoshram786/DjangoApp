@@ -1,0 +1,138 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Signinpage</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <style type="text/css">
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-top: 6px;
+            margin-bottom: 16px;
+
+          }
+          
+          /* Style the submit button */
+          input[type=submit] {
+            background-color: #4CAF50;
+            color: white;
+          }
+          
+          /* Style the container for inputs */
+          .container {
+            background-color: #f1f1f1;
+            padding: 20px;
+            height: 100%;
+            justify-content: center;
+            align-items: center;
+	  
+          }
+          
+          /* The message box is shown when the user clicks on the password field */
+          #message {
+            display:none;
+            background: #f1f1f1;
+            color: #000;
+            position: relative;
+            padding: 20px;
+            margin-top: 10px;
+          }
+          
+          #message p {
+            padding: 10px 35px;
+            font-size: 18px;
+          }
+          
+          /* Add a green text color and a checkmark when the requirements are right */
+          .valid {
+            color: green;
+          }
+          
+          .valid:before {
+            position: relative;
+            left: -35px;
+            content: "&#10004;";
+          }
+          
+          /* Add a red text color and an "x" icon when the requirements are wrong */
+          .invalid {
+            color: red;
+          }
+          
+          .invalid:before {
+            position: relative;
+            left: -35px;
+            content: "&#10006;";
+          }
+
+          html, body, .container-table {
+            height: 100%;
+        }
+        .container-table {
+            width:100vw;
+          height:150px;
+          border:1px solid black;
+        }
+        .vertical-center-row {
+           margin:auto;
+          width:30%;
+          padding:63px;
+          text-align:center;
+        
+        }
+        </style>
+</head>
+<body>
+    <form action="getName" method="post" >
+  
+        {% csrf_token %}
+
+        <h1 class="vertical-center-row">Hello {{name}} Welcome to Poker Series</h1>
+
+        <div class="container vertical-center-row">
+            <form action="/action_page.php">
+              <label for="usrname">Username</label>
+              <input type="text" id="usrname" name="text" placeholder="UserName" required>
+          
+              <label for="psw">Password</label>
+            <input type="password" id="psw" name="password" placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
+          
+              <input type="submit" value="Submit">
+              <ul><a href="accounts/register">Register Here</a></ul>
+            </form>
+          </div>
+          
+          <div id="message">
+            <h3>Password must contain the following:</h3>
+            <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+            <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
+            <p id="number" class="invalid">A <b>number</b></p>
+            <p id="length" class="invalid">Minimum <b>8 characters</b></p>
+          </div>
+    </form>
+
+    <div class=" vertical-center-row">
+          
+
+      {% for m in messages%}
+      <h3>
+          {{m}}
+      </h3>
+      {% endfor %}
+      
+  </div>
+</body>
+</html>
+{% endblock %}
+

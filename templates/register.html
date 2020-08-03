@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Signuppage</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <style type="text/css">
+    body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-image: url(background.jpg);
+    }
+    #first{
+        width: 250px ;
+        border : solid 1px;
+        box-shadow: 0 0 200px pink;
+        padding: 20px 20px 20px 20px;
+        margin-top: 60px;
+        background-color: orange;
+    }
+    #headname {
+        text-align: center;
+        clear: left;
+    }
+    span{
+        font-size: 12px;
+    }
+    .names{
+        font-size: 16px;
+        font-weight: 20px;
+    }
+    .block input{
+        width :100%;
+    }
+    button{
+        width :100%;
+    }
+</style>
+</head>
+<body>
+    <form action="register" method="post" >
+        {% csrf_token %}
+
+        <div id = "first" class="container vertical-center-row">
+		<div id = "heading">
+			<div id = "headname">
+				SIGN UP
+				<h2>
+					POKER GAME 
+				</h2>
+			</div>
+		</div>
+		<div id = "user" class = "block">
+			<span class = "names">Username</span><br>
+			<span >Enter username </span><br>
+			<input type="text" name="text" id ="signup_username" placeholder="UserName" required> 
+		</div><br>
+		<div id ="pass" class = "block">
+			<span class = "names">Password</span><br>
+			<span>Create Password</span><br>
+			<input type="password" name="password1" id = "signup_password1" placeholder="Create Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
+        </div><br>
+        <div id ="pass" class = "block">
+			<span>Confirm Password</span><br>
+			<input type="password" name="password2" id = "signup_password2" placeholder="Confirm Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
+		</div><br>
+		<div id ="emaill" class = "block">
+			<span class = "names">Email id</span><br>
+			<span>Enter email</span><br>
+			<input type="email" name="email" id = "signup_email" placeholder="Email Id" required>
+		</div><br>
+		<div id = "submit">
+			<form action="signin.html">
+				<button>Sign up</button>
+			</form>
+		</div><br>
+    </div>
+</form>
+
+<div >
+
+    {% for m in messages%}
+    <p>
+        {{m}}
+    </p>
+    {% endfor %}
+</div>
+</body>
+</html>
+
+{% endblock %}
